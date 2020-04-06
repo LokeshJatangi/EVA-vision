@@ -6,8 +6,8 @@ Store the 100,000 initial Transitions (state,action,next_state,reward) in Replay
 All the agents in the environment running parallely contributes its experience to the Replay buffer. In this 
 example a replay buffer size of 100,000 is used. After the 100,000 initial transition, Later transitions are stored in same Replay       Buffer by over writing the transition of intially stored transition.
 
-![](./images_td3/Replay_buffer.jpg)
-
+<p align="center">  <img src="./images_td3/Replay_buffer.jpg" alt="Experience_Replay_memory" />
+ </p>
 
        class ReplayMemory(object):
 
@@ -50,8 +50,9 @@ example a replay buffer size of 100,000 is used. After the 100,000 initial trans
     
    Creates the Actor which receives states as input and actions are provided as output.
    It also has max_action value to clip the action taken by agent in [- max_action , max_action]
-  
-![](./images_td3/Actor_DNN.jpg  =100x100)
+   
+<p align="center">  <img src="./images_td3/Actor_DNN.jpg" alt="Actor"  width="400" height="350" />
+ </p>
   
     class Actor(nn.Module):
 
@@ -83,7 +84,8 @@ with same parameters.
    but the Target_Critics_1 and Target_Critics_2 has same weights corresponding to its Critic.
    Critic in general receives states from environment and actions from Actor_model DNN to predict the Value (V).
           
-![](./images_td3/Critic_DNN.jpg  =100x100)
+<p align="center">  <img src="./images_td3/Critic_DNN.jpg" alt="Critic"  height="350" />
+ </p>
 
        class Critic(nn.Module):     
         def __init__(self,state_dims, action_dims):
@@ -127,7 +129,8 @@ with same parameters.
           
   ### 4. Intialize the T3D class 
          
-![](./images_td3/T3D_init.jpg  =100x100)
+<p align="center">  <img src="./images_td3/T3D_init.jpg" />
+ </p>
          
          class T3D(object):
 
@@ -181,7 +184,8 @@ Sample batch_size number of Transitions from Replay_buffer
   
 As Actor_target is the model that interacts with the environment, Hence the action a' is obtained from next_state s'
   
-![](./images_td3/Predict_a.jpg') 
+<p align="center">  <img src="./images_td3/Predict_a'.jpg"  width="400" height="300" />
+ </p>
 
           next_action = self.actor_target.forward(next_state)
     
@@ -197,7 +201,7 @@ As Actor_target is the model that interacts with the environment, Hence the acti
    
   Q-values from both the Critic_Target models is obtained with input state(**s'**) and next_action from Actor_target(**a'**)  
    
-![](./images_td3/Critic_target_a'.jpg') 
+![](./images_td3/Critic_target_a'.jpg) 
    
            targetQ1, targetQ2 = self.critic_target.forward (next_state, next_action)
 
